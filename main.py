@@ -30,7 +30,7 @@ print("As a little gift, you got two drinks in your inventory.")
 print("To check your inventory, try to use the inventory action.")
 
 while player.tries > 0:
-    action = input('Use an action: ')
+    action = input('\nUse an action: ')
     if action == 'inventory':
         print('\n--INVENTORY--')
         for i in inventory:
@@ -41,6 +41,14 @@ while player.tries > 0:
         if action.lower() == 'drink ' + str(eval(each).name).lower():
             print('You drank '+ str(eval(each).name))
             inventory.remove(each)
+            break
+
+        if action.lower() == 'look at ' + str(eval(each).name).lower():
+            print('You look at the '+ str(eval(each).name))
+            if eval(each).sparkly:
+                print('It is ' + eval(each).colour.lower() + ' and sparkly!')
+            else:
+                print('It is plain ' + eval(each).colour.lower())
             break
 
     player.tries -= 1
