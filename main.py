@@ -62,7 +62,7 @@ while player.tries > 0:
         if action.lower() == 'drink ' + str(eval(each).name).lower():
             # check age restriction
             if eval(each).ageRestriction > player.age:
-                print('You tried to drink ' + str(eval(each).name) + '...')
+                print('You were on your way to drink ' + str(eval(each).name) + '.')
                 print('But then you remembered the age restriction of ' + str(eval(each).ageRestriction) + 'years, and decided to skip it...')
                 break
             
