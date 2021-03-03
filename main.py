@@ -8,6 +8,21 @@ def game_over():
     print('-------------')
     exit()
 
+
+def valid_age():
+    while True:
+        try:
+            inputAge = int(input('Age: '))
+            if 0 < inputAge < 999:
+                return inputAge
+            elif inputAge > 999:
+                print('Okay, I get it, you want to role play a certain age, but not even most Drow elves become older than 1000 years old')
+            else:
+                print('A VALID age that is... No commas, no negative numbers etc.')
+        except:
+            print('Invalid age, try writing it with numbers')
+
+
 drink1 = objects.liquid('Zingo', 'Yellow', True, False, False, 0)
 drink2 = objects.liquid('Coca Cola', 'Brown', True, False, False, 0)
 drink3 = objects.liquid('Norrlands Guld', 'Yellow', True, False, False, 18)
@@ -18,9 +33,9 @@ drink7 = objects.liquid('Poison', 'Green', False, False, True, 18)
 
 print('Welcome to Sams text based adventure game!')
 print("What's your name?")
-inputName = input()
+inputName = input('Name: ')
 print("How old are you?")
-inputAge = int(input())
+inputAge = valid_age()
 player = objects.person(inputName, inputAge)
 print("Hello " + player.name + ". Let's begin.")
 
