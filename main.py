@@ -2,6 +2,12 @@
 import objects
 from random import randint
 
+def game_over():
+    print('-------------')
+    print('--GAME OVER--')
+    print('-------------')
+    exit()
+
 drink1 = objects.liquid('Zingo', 'Yellow', True, False, False, 0)
 drink2 = objects.liquid('Coca Cola', 'Brown', True, False, False, 0)
 drink3 = objects.liquid('Norrlands Guld', 'Yellow', True, False, False, 18)
@@ -14,7 +20,7 @@ print('Welcome to Sams text based adventure game!')
 print("What's your name?")
 inputName = input()
 print("How old are you?")
-inputAge = input()
+inputAge = int(input())
 player = objects.person(inputName, inputAge)
 print("Hello " + player.name + ". Let's begin.")
 
@@ -39,8 +45,20 @@ while player.tries > 0:
 
     for each in inventory:
         if action.lower() == 'drink ' + str(eval(each).name).lower():
+            # check age restriction
+            if eval(each).ageRestriction > player.age:
+                print('You tried to drink ' + str(eval(each).name) + '...')
+                print('But then you remembered the age restriction of ' + str(eval(each).ageRestriction) + 'years, and decided to skip it...')
+                break
+            
             print('You drank '+ str(eval(each).name))
             inventory.remove(each)
+            
+            # check if lethal
+            if eval(each).lethal:
+                print('AND DIED!')
+                game_over()
+            
             break
 
         if action.lower() == 'look at ' + str(eval(each).name).lower():
